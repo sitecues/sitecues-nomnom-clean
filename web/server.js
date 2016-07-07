@@ -3,7 +3,7 @@
 const
   hapi = require('hapi'),
   server = new hapi.Server(),
-  checker =require('../lib/checker.js'),
+  reporter =require('../lib/reporter.js'),
   serverOptions = {
     port: parseInt(process.env.PORT, 10) || 3001,
     routes: { cors: true }
@@ -25,10 +25,10 @@ server.route({
   handler: function (request, reply) {
     const
       config = {
-        checks: getValidString(request.query.checks, /[a-z,-]+/), // Only accept lowercase letters, comma, hyphen
+        reports: getValidString(request.query.reports, /[a-z,-]+/), // Only accept lowercase letters, comma, hyphen
         view: 'json'
       };
-    checker(config) // No need to catch errors for now -- just let exception through
+    reporter(config) // No need to catch errors for now -- just let exception through
       .then(function(rawReport) {
         reply(rawReport);
       });

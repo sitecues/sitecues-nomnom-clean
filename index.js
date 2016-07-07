@@ -2,4 +2,4 @@
 
 'use strict';
 
-module.exports = require('./lib/checker');
+module.exports = require('./lib/reporter');

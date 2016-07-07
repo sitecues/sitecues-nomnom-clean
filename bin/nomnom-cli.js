@@ -11,16 +11,16 @@ const
   constants = require('../lib/constants'),
   severityOptions = Object.keys(constants.SEVERITY),
   config = require('yargs').usage('Usage: $0 <command> [options]')
-    .describe('checks', 'Comma-separated lists of checks from lib/checks/ folder (default = all)')
-    .string('checks')
+    .describe('reports', 'Comma-separated lists of reports from lib/reports/ folder (default = all)')
+    .string('reports')
     .describe('view', 'Name of view to use, e.g. text|json|html (default = json)')
     .string('view')
     .help('h')
     .alias('h', 'help')
     .argv,
-  checker = require('../lib/checker.js');
+  reporter = require('../lib/reporter.js');
 
-checker(config)
+reporter(config)
   .then(function (rawReport) {
     // TODO use winston library if we need more advanced logging
     console.log('\n\nWriting report ...');
