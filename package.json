@@ -1,0 +1,21 @@
+{
+  "name": "sitecues-nomnom",
+  "version": "1.0.0",
+  "description": "Glean useful data from Sitecues metrics",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "node bin/nomnom-server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:ai_squared/sitecues-nomnom.git"
+  },
+  "author": "Aaron Leventhal",
+  "license": "UNLICENSED",
+  "homepage": "https://bitbucket.org/aleventhal/sitecues-nomnom#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
