@@ -15,7 +15,10 @@
   "license": "UNLICENSED",
   "homepage": "https://bitbucket.org/aleventhal/sitecues-nomnom#readme",
   "dependencies": {
+    "event-stream": "3.3.3",
+    "glob-fs": "0.1.6",
+    "hapi": "13.5.0",
+    "yargs": "4.7.1"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
