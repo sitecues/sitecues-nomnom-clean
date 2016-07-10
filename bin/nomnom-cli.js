@@ -8,7 +8,6 @@ process.on('unhandledRejection', function (err) {
 });
 
 const
-  constants = require('../lib/constants'),
   config = require('yargs').usage('Usage: $0 <command> [options]')
     .describe('reports', 'Comma-separated lists of reports from lib/reports/ folder (default = all)')
     .string('reports')
@@ -27,7 +26,7 @@ reporter(config)
   .then(function (rawReports) {
     console.log('\n\nWriting reports ...');
     rawReports.forEach((rawReport) => {
-      console.log(rawReport);
+      console.log(JSON.stringify(rawReport,null,2));
       console.log('Finished');
     });
   });
