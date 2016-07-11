@@ -15,6 +15,8 @@ const
     .number('startDate')
     .describe('endDate', 'End date in the format YYYYMMDD')
     .number('endDate')
+    .number('step')
+    .describe('step', 'Sample every nth item')
     .describe('view', 'Name of view to use, e.g. text|json|html (default = json)')
     .string('view')
     .help('h')
