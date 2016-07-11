@@ -8,7 +8,7 @@ process.on('unhandledRejection', function (err) {
 });
 
 const
-  config = require('yargs').usage('Usage: $0 <command> [options]')
+  options = require('yargs').usage('Usage: $0 <command> [options]')
     .describe('reports', 'Comma-separated lists of reports from lib/reports/ folder (default = all)')
     .string('reports')
     .describe('startDate', 'Start date in the format YYYYMMDD')
@@ -22,11 +22,7 @@ const
     .argv,
   reporter = require('../lib/reporter.js');
 
-reporter(config)
-  .then(function (rawReports) {
-    console.log('\n\nWriting reports ...');
-    rawReports.forEach((rawReport) => {
-      console.log(JSON.stringify(rawReport,null,2));
-      console.log('Finished');
-    });
+reporter(options)
+  .then(function (result) {
+    console.log(JSON.stringify(result, null, 2));
   });
