@@ -1,53 +1,37 @@
 'use strict';
 
 const
+  path = require('path'),
   hapi = require('hapi'),
+  inert = require('inert'),
   server = new hapi.Server(),
-  reporter =require('../lib/reporter.js'),
   serverOptions = {
     port: parseInt(process.env.PORT, 10) || 3001,
-    routes: { cors: true }
+    routes: {
+      cors: true,
+      files: {
+        relativeTo: path.join(__dirname, '..', 'data', 'compiled')
+      }
+    }
   };
 
-function getValidString(input, regex) {
-  if (!input) {
-    return '';
-  }
-  var output = input.match(regex);
-  return output ? output[0] : '';
-}
-
-function getValidInteger(input) {
-  if (!input) {
-    return undefined;
-  }
-
-  var output = input.match(/\d+/)
-  return output? parseInt(output[0]) : undefined;
-}
-
 server.connection(serverOptions);
+server.register(inert, (err) => {
+  if (err) {
+    throw err;
+  }
+
+});
 
 server.route({
   method: 'GET',
-  path: '/',
-  handler: function (request, reply) {
-    const
-      options = {
-        reports: getValidString(request.query.reports, /[a-z,-]+/), // Only accept lowercase letters, comma, hyphen
-        startDate: getValidInteger(request.query.startDate, /[a-z,-]+/), // Only accept lowercase letters, comma, hyphen
-        endDate: getValidInteger(request.query.endDate, /[a-z,-]+/), // Only accept lowercase letters, comma, hyphen
-        eventStep: getValidInteger(request.query.eventStep),
-        keepTopEvents: getValidInteger(request.query.keepTopEvents),
-        dayStep: getValidInteger(request.query.dayStep),
-        siteId: getValidString(request.query.siteId),
-        doLogDebugInfo: true
-      };
-    console.log('Options:\n', options);
-    reporter(options) // No need to catch errors for now -- just let exception through
-      .then(function(rawReport) {
-        reply(rawReport);
-      });
+  path: '/{param*}',
+  handler: {
+    directory: {
+      path: '.',
+      redirectToSlash: true,
+      index: true
+    }
   }
 });
 
