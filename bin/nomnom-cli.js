@@ -23,15 +23,17 @@ const
     .number('dayStep')
     .describe('siteId', 'Limit to a single site id')
     .string('siteId')
-    .describe('')
-    .describe('view', 'Name of view to use, e.g. text|json|html (default = json)')
-    .string('view')
+    .describe('doLogDebugInfo', 'Log debug info?')
+    .default('doLogDebugInfo', true)
+    .boolean('doLogDebugInfo')
     .help('h')
     .alias('h', 'help')
     .argv,
-  reporter = require('../lib/reporter.js');
+  reporter = require('../lib/reporter.js'),
+  RESULTS_FILENAME = 'data/compiled/all.json';
 
 reporter(options)
   .then(function (result) {
-    console.log(JSON.stringify(result, null, 2));
+    console.log('Writing to ' + RESULTS_FILENAME);
+    require('fs').writeFileSync(RESULTS_FILENAME, JSON.stringify(result));
   });

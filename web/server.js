@@ -41,8 +41,7 @@ server.route({
         keepTopEvents: getValidInteger(request.query.keepTopEvents),
         dayStep: getValidInteger(request.query.dayStep),
         siteId: getValidString(request.query.siteId),
-        doLogDebugInfo: true,
-        view: 'json'
+        doLogDebugInfo: true
       };
     console.log('Options:\n', options);
     reporter(options) // No need to catch errors for now -- just let exception through
