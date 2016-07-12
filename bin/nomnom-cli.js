@@ -15,6 +15,8 @@ const
     .number('startDate')
     .describe('endDate', 'End date in the format YYYYMMDD')
     .number('endDate')
+    .describe('keepTopEvents', 'Sample n top events from each day -- very fast but does not provide truly representative sample.')
+    .number('keepTopEvents')
     .describe('eventStep', 'Sample every nth item')
     .number('eventStep')
     .describe('daysStep', 'Sample every nth day')
