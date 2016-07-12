@@ -41,6 +41,7 @@ server.route({
         keepTopEvents: getValidInteger(request.query.keepTopEvents),
         dayStep: getValidInteger(request.query.dayStep),
         siteId: getValidString(request.query.siteId),
+        doLogDebugInfo: true,
         view: 'json'
       };
     console.log('Options:\n', options);
