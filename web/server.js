@@ -17,6 +17,15 @@ function getValidString(input, regex) {
   return output ? output[0] : '';
 }
 
+function getValidInteger(input) {
+  if (!input) {
+    return undefined;
+  }
+
+  var output = input.match(/\d+/)
+  return output? parseInt(output[0]) : undefined;
+}
+
 server.connection(serverOptions);
 
 server.route({
@@ -24,11 +33,17 @@ server.route({
   path: '/',
   handler: function (request, reply) {
     const
-      config = {
+      options = {
         reports: getValidString(request.query.reports, /[a-z,-]+/), // Only accept lowercase letters, comma, hyphen
+        startDate: getValidInteger(request.query.startDate, /[a-z,-]+/), // Only accept lowercase letters, comma, hyphen
+        endDate: getValidInteger(request.query.startDate, /[a-z,-]+/), // Only accept lowercase letters, comma, hyphen
+        eventStep: getValidInteger(request.query.eventStep),
+        dayStep: getValidInteger(request.query.dayStep),
+        siteId: getValidString(request.query.siteId),
         view: 'json'
       };
-    reporter(config) // No need to catch errors for now -- just let exception through
+    console.log('Options:\n', options);
+    reporter(options) // No need to catch errors for now -- just let exception through
       .then(function(rawReport) {
         reply(rawReport);
       });
