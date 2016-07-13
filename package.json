@@ -18,6 +18,7 @@
     "event-stream": "3.3.3",
     "glob-fs": "0.1.6",
     "hapi": "13.5.0",
+    "inert": "4.0.1",
     "yargs": "4.7.1"
   },
   "devDependencies": {}
