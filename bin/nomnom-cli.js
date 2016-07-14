@@ -21,8 +21,6 @@ const
     .number('eventStep')
     .describe('daysStep', 'Sample every nth day')
     .number('dayStep')
-    .describe('siteId', 'Limit to a single site id')
-    .string('siteId')
     .describe('doLogDebugInfo', 'Log debug info?')
     .default('doLogDebugInfo', true)
     .boolean('doLogDebugInfo')
