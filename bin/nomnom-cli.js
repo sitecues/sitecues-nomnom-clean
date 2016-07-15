@@ -21,6 +21,8 @@ const
     .number('eventStep')
     .describe('daysStep', 'Sample every nth day')
     .number('dayStep')
+    .describe('dryRun', 'Don\'t actually save results')
+    .boolean('dryRun')
     .describe('doLogDebugInfo', 'Log debug info?')
     .default('doLogDebugInfo', true)
     .boolean('doLogDebugInfo')
@@ -32,6 +34,8 @@ const
 
 reporter(options)
   .then(function (result) {
-    console.log('Writing to ' + RESULTS_FILENAME);
-    require('fs').writeFileSync(RESULTS_FILENAME, JSON.stringify(result));
+    if (!options.dryRun) {
+      console.log('Writing to ' + RESULTS_FILENAME);
+      require('fs').writeFileSync(RESULTS_FILENAME, JSON.stringify(result));
+    }
   });
