@@ -19,3 +19,6 @@ pid
 
 # IDE data is different for each developer.
 .idea
+
+# Script to start
+nomnom.sh
