@@ -4,6 +4,16 @@ const
   path = require('path'),
   hapi = require('hapi'),
   inert = require('inert'),
+  hapiAuthBasic = require('hapi-auth-basic'),
+  bcrypt = require('bcrypt'),
+  users = {
+    sitecues: {
+      username: 'sitecues',
+      password: '$2a$04$j8zwvAjgBdO2mf143fvjsu8RsqYZTGM/3P3ze1f5Y5DPVdnLpc9l.',   // 'cheers'
+      name: 'Sitecues user',
+      id: '2133d32a'
+    }
+  },
   server = new hapi.Server(),
   serverOptions = {
     port: parseInt(process.env.PORT, 10) || 3001,
@@ -16,23 +26,32 @@ const
   };
 
 server.connection(serverOptions);
+
 server.register(inert, (err) => {
   if (err) {
     throw err;
   }
-
 });
 
-server.route({
-  method: 'GET',
-  path: '/{param*}',
-  handler: {
-    directory: {
-      path: '.',
-      redirectToSlash: true,
-      index: true
-    }
+server.register(hapiAuthBasic, (err) => {
+  if (err) {
+    throw err;
   }
+  server.auth.strategy('simple', 'basic', { validateFunc: validate });
+  server.route({
+    method: 'GET',
+    config: {
+      auth: 'simple'
+    },
+    path: '/{param*}',
+    handler: {
+      directory: {
+        path: '.',
+        redirectToSlash: true,
+        index: true
+      }
+    }
+  });
 });
 
 server.start((err) => {
@@ -41,4 +60,17 @@ server.start((err) => {
   }
   console.log('Server running at:', server.info.uri);
 });
+
+function validate(request, username, password, callback) {
+
+  const user = users[username];
+  if (!user) {
+    return callback(null, false);
+  }
+
+  bcrypt.compare(password, user.password, (err, isValid) => {
+    callback(err, isValid, { id: user.id, name: user.name });
+  });
+};
+
 

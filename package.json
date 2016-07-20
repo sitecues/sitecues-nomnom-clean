@@ -16,9 +16,11 @@
   "homepage": "https://bitbucket.org/aleventhal/sitecues-nomnom#readme",
   "dependencies": {
     "aws-sdk": "2.4.7",
+    "bcrypt": "0.8.7",
     "event-stream": "3.3.3",
     "glob-fs": "0.1.6",
     "hapi": "13.5.0",
+    "hapi-auth-basic": "4.2.0",
     "inert": "4.0.1",
     "yargs": "4.7.1"
   },
