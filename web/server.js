@@ -3,13 +3,14 @@
 const
   path = require('path'),
   hapi = require('hapi'),
+  //bcrypt = require('bcrypt'), // For unhashing passwords
   inert = require('inert'),
   hapiAuthBasic = require('hapi-auth-basic'),
-  bcrypt = require('bcrypt'),
   users = {
     sitecues: {
       username: 'sitecues',
-      password: '$2a$04$j8zwvAjgBdO2mf143fvjsu8RsqYZTGM/3P3ze1f5Y5DPVdnLpc9l.',   // 'cheers'
+      password: 'cheers',
+      //password: '$2a$04$j8zwvAjgBdO2mf143fvjsu8RsqYZTGM/3P3ze1f5Y5DPVdnLpc9l.',   // 'cheers'
       name: 'Sitecues user',
       id: '2133d32a'
     }
@@ -68,9 +69,12 @@ function validate(request, username, password, callback) {
     return callback(null, false);
   }
 
-  bcrypt.compare(password, user.password, (err, isValid) => {
-    callback(err, isValid, { id: user.id, name: user.name });
-  });
+  const isPasswordCorrect = password === user.password;
+  callback(null, isPasswordCorrect, { id: user.id, name: user.name });
+
+  // bcrypt.compare(password, user.password, (err, isValid) => {
+  //   callback(err, isValid, { id: user.id, name: user.name });
+  // });
 };
 
 
