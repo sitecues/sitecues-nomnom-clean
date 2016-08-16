@@ -1,11 +1,11 @@
 {
-  "name": "sitecues-nomnom",
+  "name": "sitecues-nomnom-clean",
   "version": "1.0.0",
-  "description": "Glean useful data from Sitecues metrics",
+  "description": "Clean and repair legacy Sitecues event data and format with a common structure",
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "node bin/nomnom-server.js"
+    "start": "node bin/nomnom-clean.js"
   },
   "repository": {
     "type": "git",
@@ -13,7 +13,7 @@
   },
   "author": "Aaron Leventhal",
   "license": "UNLICENSED",
-  "homepage": "https://bitbucket.org/aleventhal/sitecues-nomnom#readme",
+  "homepage": "https://bitbucket.org/aleventhal/sitecues-nomnom-clean#readme",
   "dependencies": {
     "aws-sdk": "2.4.7",
     "event-stream": "3.3.3",
