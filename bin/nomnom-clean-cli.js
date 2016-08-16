@@ -15,12 +15,6 @@ const
     .number('startDate')
     .describe('endDate', 'End date in the format YYYYMMDD')
     .number('endDate')
-    .describe('keepTopEvents', 'Sample n top events from each day -- very fast but does not provide truly representative sample.')
-    .number('keepTopEvents')
-    .describe('eventStep', 'Sample every nth item')
-    .number('eventStep')
-    .describe('daysStep', 'Sample every nth day')
-    .number('dayStep')
     .describe('dryRun', 'Don\'t actually save results')
     .boolean('dryRun')
     .describe('doLogDebugInfo', 'Log debug info?')
@@ -29,13 +23,6 @@ const
     .help('h')
     .alias('h', 'help')
     .argv,
-  reporter = require('../lib/reporter.js'),
-  RESULTS_FILENAME = 'data/compiled/all.json';
+  clean = require('../lib/clean.js');
 
-reporter(options)
-  .then(function (result) {
-    if (!options.dryRun) {
-      console.log('Writing to ' + RESULTS_FILENAME);
-      require('fs').writeFileSync(RESULTS_FILENAME, JSON.stringify(result));
-    }
-  });
+clean(options);
