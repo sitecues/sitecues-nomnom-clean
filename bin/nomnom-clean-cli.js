@@ -13,8 +13,6 @@ const
     .string('start')
     .describe('end', 'End either as a filename, or a date in the format YYYYMMDD')
     .string('end')
-    .describe('dryRun', 'Don\'t actually save results')
-    .boolean('dryRun')
     .describe('dataFolder', 'Location of data')
     .string('dataFolder')
     .describe('doForce', 'Create new clean versions of all data files, even if clean versions already exist')
