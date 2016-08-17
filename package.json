@@ -15,7 +15,7 @@
   "license": "UNLICENSED",
   "homepage": "https://bitbucket.org/aleventhal/sitecues-nomnom-clean#readme",
   "dependencies": {
-    "aws-sdk": "2.4.7",
+    "aws-sdk": "2.5.1",
     "event-stream": "3.3.3",
     "glob-fs": "0.1.6",
     "hapi": "13.5.0",
