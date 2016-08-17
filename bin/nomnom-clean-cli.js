@@ -23,6 +23,6 @@ const
     .help('h')
     .alias('h', 'help')
     .argv,
-  clean = require('../lib/clean.js');
+  clean = require('../lib/clean-all.js');
 
 clean(options);
