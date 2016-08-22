@@ -17,6 +17,8 @@ const
     .string('datafolder')
     .describe('force', 'Create new clean versions of all data files, even if clean versions already exist')
     .boolean('force')
+    .describe('clean', 'Clean output folder before beginning')
+    .boolean('clean')
     .describe('quiet', 'Silence debug info?')
     .default('quiet', false)
     .boolean('quiet')
