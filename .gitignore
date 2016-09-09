@@ -21,4 +21,4 @@ pid
 .idea
 
 # Script to start
-nomnom.sh
+nomnom-clean.sh
